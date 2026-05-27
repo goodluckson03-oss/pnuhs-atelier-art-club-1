@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아틀리에(Atelier) - 고등학교 미술 동아리</title>
+    <!-- Tailwind CSS 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 아이콘 로드 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 구글 폰트 로드 (Gowun Batang & Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Gowun Batang', sans-serif;
+        }
+        .art-title {
+            font-family: 'Gowun Batang', serif;
+        }
+        /* 스크롤바 커스텀 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen transition-colors duration-300">
+
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- 로고 -->
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-rose-400 via-amber-400 to-indigo-500 rounded-xl flex items-center justify-center text-white shadow-md">
+                        <i class="fa-solid fa-palette text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="art-title text-xl font-bold tracking-tight bg-gradient-to-r from-rose-500 to-indigo-600 bg-clip-text text-transparent">아틀리에</span>
+                        <span class="text-xs block text-slate-400">High School Art Club</span>
+                    </div>
+                </div>
+
+                <!-- 데스크톱 메뉴 -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
+                    <a href="#intro" class="hover:text-rose-500 transition-colors">동아리 소개</a>
+                    <a href="#canvas-section" class="hover:text-rose-500 transition-colors">디지털 캔버스</a>
+                    <a href="#gallery" class="hover:text-rose-500 transition-colors">온라인 전시회</a>
+                    <a href="#schedule" class="hover:text-rose-500 transition-colors">활동 일정</a>
+                    <a href="#apply-section" class="text-rose-500 font-semibold hover:text-rose-600 transition-colors"><i class="fa-solid fa-paper-plane mr-1"></i> 부원 지원하기</a>
+                    <a href="#guestbook" class="hover:text-rose-500 transition-colors">방명록</a>
+                </nav>
+
+                <!-- 캔버스 바로가기 버튼 -->
+                <div class="hidden md:block">
+                    <a href="#apply-section" class="inline-flex items-center gap-2 bg-gradient-to-r from-rose-500 to-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-id-card"></i> 신입 부원 지원하기
+                    </a>
+                </div>
+
+                <!-- 모바일 메뉴 버튼 -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 text-slate-600 hover:text-slate-900 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 모바일 드롭다운 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 py-3 space-y-2">
+            <a href="#intro" class="block py-2 text-slate-600 hover:text-rose-500 text-sm">동아리 소개</a>
+            <a href="#canvas-section" class="block py-2 text-slate-600 hover:text-rose-500 text-sm">디지털 캔버스</a>
+            <a href="#gallery" class="block py-2 text-slate-600 hover:text-rose-500 text-sm">온라인 전시회</a>
+            <a href="#schedule" class="block py-2 text-slate-600 hover:text-rose-500 text-sm">활동 일정</a>
+            <a href="#apply-section" class="block py-2 text-rose-500 font-semibold hover:text-rose-600 text-sm">부원 지원하기</a>
+            <a href="#guestbook" class="block py-2 text-slate-600 hover:text-rose-500 text-sm">방명록</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-slate-50 py-20 lg:py-32">
+            <div class="absolute inset-0 z-0 opacity-30">
+                <div class="absolute top-10 left-10 w-72 h-72 bg-rose-300 rounded-full filter blur-3xl animate-pulse"></div>
+                <div class="absolute bottom-10 right-10 w-96 h-96 bg-indigo-300 rounded-full filter blur-3xl animate-pulse delay-700"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <span class="inline-block px-4 py-1.5 bg-rose-50 text-rose-600 text-xs font-semibold rounded-full mb-4 border border-rose-100 shadow-sm">
+                    🎨 실시간 파이어베이스 구동 중 | 창의성과 개성이 싹트는 우리들의 아틀리에
+                </span>
+                <h1 class="art-title text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
+                    붓끝으로 그리는 <br class="sm:hidden">
+                    <span class="bg-gradient-to-r from-rose-500 via-purple-500 to-indigo-600 bg-clip-text text-transparent">우리들의 푸른 봄</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 mb-10 leading-relaxed">
+                    하얀 도화지 위에 각자의 색깔을 더해 세상을 물들입니다. 고등학교 미술 동아리 '아틀리에'에 오신 것을 환영합니다! 실시간 연동된 온라인 갤러리에서 미술부의 예술 세계를 경험해보세요.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#gallery" class="bg-slate-900 text-white px-8 py-4 rounded-2xl hover:bg-slate-800 transition-all font-semibold shadow-lg shadow-slate-900/10 text-center">
+                        <i class="fa-solid fa-images mr-2"></i> 학생 작품 감상하기
+                    </a>
+                    <a href="#canvas-section" class="bg-white text-slate-800 border border-slate-200 px-8 py-4 rounded-2xl hover:bg-slate-50 transition-all font-semibold shadow-sm text-center">
+                        <i class="fa-solid fa-paintbrush text-rose-500 mr-2"></i> 나만의 그림 그리기
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="text-rose-500 font-semibold mb-2 flex items-center gap-2">
+                            <span class="w-8 h-[2px] bg-rose-500"></span> About Us
+                        </div>
+                        <h2 class="art-title text-3xl sm:text-4xl font-bold text-slate-900 mb-6">아틀리에 동아리는요?</h2>
+                        <p class="text-slate-600 leading-relaxed mb-6">
+                            미술에 대한 열정을 가진 고등학생들이 모여 자유롭게 창작 활동을 펼치는 예술 놀이터입니다. 소묘, 수채화, 아크릴화는 물론 디지털 일러스트레이션과 굿즈 제작까지 다채로운 시각 예술을 탐구하고 교류합니다.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                                <h4 class="font-bold text-rose-500 mb-1"><i class="fa-solid fa-users mr-1"></i> 총 부원</h4>
+                                <p class="text-sm text-slate-500">각 학년별 예술가 25명</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                                <h4 class="font-bold text-indigo-500 mb-1"><i class="fa-solid fa-calendar mr-1"></i> 동아리 시간</h4>
+                                <p class="text-sm text-slate-500">매주 금요일 6-7교시</p>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-rose-50/50 rounded-2xl border border-rose-100/50 text-slate-700 text-sm italic">
+                            "미술은 세상을 더 깊고 따뜻하게 바라보게 만듭니다. 서툴러도 괜찮습니다. 여러분의 모든 손길이 곧 예술이니까요." <br>
+                            <span class="block text-right text-xs font-semibold mt-2 text-rose-600">— 미술 동아리 담당 지도교사</span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-video sm:aspect-square bg-gradient-to-tr from-amber-100 to-rose-100 rounded-3xl overflow-hidden shadow-inner flex items-center justify-center p-8 relative">
+                            <div class="grid grid-cols-2 gap-4 w-full h-full">
+                                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600" alt="Art Materials" class="w-full h-full object-cover rounded-2xl shadow-md transform hover:rotate-3 transition-transform duration-300">
+                                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=600" alt="Painting Work" class="w-full h-full object-cover rounded-2xl shadow-md transform hover:-rotate-3 transition-transform duration-300 mt-6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="canvas-section" class="py-20 bg-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-indigo-600 font-semibold text-sm">Interactive Studio</span>
+                    <h2 class="art-title text-3xl font-bold text-slate-900 mt-2 mb-4">나만의 디지털 캔버스</h2>
+                    <p class="text-slate-600 text-sm max-w-md mx-auto">
+                        웹 스튜디오에서 마음껏 아이디어를 그려보세요! 다 완성된 후 하단의 <span class="font-semibold text-rose-500">"전시관에 등록하기"</span> 버튼을 누르면 실시간 온라인 미술관에 바로 업로드됩니다.
+                    </p>
+                </div>
+
+                <!-- 캔버스 컨테이너 박스 -->
+                <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-xl border border-slate-200/60">
+                    <!-- 도구 설정 바 -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-4 pb-4 border-b border-slate-100">
+                        <!-- 색상 선택기 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-500">색상:</span>
+                            <div class="flex items-center gap-1.5" id="color-palette">
+                                <button class="w-6 h-6 rounded-full bg-slate-900 border-2 border-white ring-2 ring-slate-900" data-color="#0f172a"></button>
+                                <button class="w-6 h-6 rounded-full bg-rose-500 border-2 border-white" data-color="#f43f5e"></button>
+                                <button class="w-6 h-6 rounded-full bg-amber-500 border-2 border-white" data-color="#f59e0b"></button>
+                                <button class="w-6 h-6 rounded-full bg-emerald-500 border-2 border-white" data-color="#10b981"></button>
+                                <button class="w-6 h-6 rounded-full bg-indigo-500 border-2 border-white" data-color="#6366f1"></button>
+                                <input type="color" id="custom-color" class="w-6 h-6 p-0 rounded-full border-0 cursor-pointer" title="사용자 정의 색상">
+                            </div>
+                        </div>
+
+                        <!-- 브러쉬 두께 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-500">브러쉬 두께:</span>
+                            <input type="range" id="brush-size" min="1" max="25" value="5" class="w-24 accent-rose-500">
+                            <span id="brush-size-val" class="text-xs font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-600">5px</span>
+                        </div>
+
+                        <!-- 초기화 / 지우개 기능 -->
+                        <div class="flex gap-2">
+                            <button id="eraser-btn" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-rose-50 hover:text-rose-600 transition-colors flex items-center gap-1">
+                                <i class="fa-solid fa-eraser"></i> 지우개
+                            </button>
+                            <button id="clear-btn" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors flex items-center gap-1">
+                                <i class="fa-solid fa-trash-can"></i> 전체 지우기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 실제 HTML5 Canvas -->
+                    <div class="relative bg-white border border-slate-200 rounded-2xl overflow-hidden aspect-[4/3] w-full">
+                        <canvas id="paint-canvas" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
+                    </div>
+
+                    <!-- 전시관에 올리기 폼 -->
+                    <div class="mt-6 pt-6 border-t border-slate-100 grid md:grid-cols-3 gap-4 items-end">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1" for="art-author">작가 이름</label>
+                            <input type="text" id="art-author" placeholder="예: 김예람" class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1" for="art-title">작품 제목</label>
+                            <input type="text" id="art-title" placeholder="예: 푸른 하늘의 고래" class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                        <button id="submit-art-btn" class="w-full bg-gradient-to-r from-rose-500 to-indigo-500 hover:from-rose-600 hover:to-indigo-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> 전시관에 등록하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <span class="text-rose-500 font-semibold text-sm">Online Exhibition</span>
+                        <h2 class="art-title text-3xl sm:text-4xl font-bold text-slate-900 mt-2">아틀리에 온라인 미술관</h2>
+                        <p class="text-slate-500 text-sm mt-2">우리 미술 동아리 부원들이 그린 눈부신 작품들을 한눈에 감상하세요.</p>
+                    </div>
+
+                    <!-- 카테고리 필터 탭 -->
+                    <div class="flex flex-wrap gap-2 mt-6 md:mt-0" id="gallery-filters">
+                        <button class="px-4 py-2 text-sm font-semibold rounded-full bg-slate-900 text-white shadow-sm transition-all" data-filter="all">전체보기</button>
+                        <button class="px-4 py-2 text-sm font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all" data-filter="digital">디지털 캔버스</button>
+                        <button class="px-4 py-2 text-sm font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all" data-filter="canvas">회화/수채화</button>
+                        <button class="px-4 py-2 text-sm font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all" data-filter="illustration">디자인/일러스트</button>
+                    </div>
+                </div>
+
+                <!-- 갤러리 카드 그리드 영역 -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid">
+                    <!-- Firebase 로드 전 스켈레톤 상태바 -->
+                    <div class="col-span-full py-16 text-center text-slate-400">
+                        <i class="fa-solid fa-spinner animate-spin text-4xl mb-3 text-indigo-500"></i>
+                        <p class="text-sm">서버에서 미술 동아리 작품집을 가져오고 있습니다...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule" class="py-20 bg-slate-50 border-t border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-rose-500 font-semibold text-sm">Roadmap & Activity</span>
+                    <h2 class="art-title text-3xl font-bold text-slate-900 mt-2">동아리 주요 활동 일정</h2>
+                    <p class="text-slate-500 text-sm mt-2">올해 함께 채워 나갈 다채로운 예술 여정입니다.</p>
+                </div>
+
+                <!-- 타임라인 스케줄러 -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 1학기 초 -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-rose-400"></div>
+                        <span class="text-xs font-bold text-rose-500 bg-rose-50 px-2 py-1 rounded-md">3월 ~ 5월</span>
+                        <h4 class="font-bold text-lg text-slate-800 mt-3 mb-2">기초 조형 및 스케치</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            연필 크로키, 인물 크로키 및 손 소묘를 통해 사물을 있는 그대로 정확하게 관찰하고 형태를 재현하는 힘을 기릅니다.
+                        </p>
+                    </div>
+                    <!-- 1학기 말 -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-amber-400"></div>
+                        <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-md">6월 ~ 7월</span>
+                        <h4 class="font-bold text-lg text-slate-800 mt-3 mb-2">개인별 캔버스 유화/아크릴</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            나만의 도화지에 아크릴 물감으로 다채로운 풍경이나 추상화를 채웁니다. 교내 복도 상설 전시를 첫 기획합니다.
+                        </p>
+                    </div>
+                    <!-- 2학기 초 -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-emerald-400"></div>
+                        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md">9월 ~ 10월</span>
+                        <h4 class="font-bold text-lg text-slate-800 mt-3 mb-2">디지털 굿즈 창작</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            아이패드 등 기기를 이용해 개인 일러스트 캐릭터를 만들고, 엽서, 키링, 스티커 등 실물 동아리 굿즈를 소량 제작합니다.
+                        </p>
+                    </div>
+                    <!-- 학교 축제 -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-indigo-400"></div>
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md">11월 ~ 12월</span>
+                        <h4 class="font-bold text-lg text-slate-800 mt-3 mb-2">교내 축제 정기 미술제</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            동아리 축제 기간 중 '나의 우주'를 주제로 대형 정기 가을 정기 단체전을 개최하고 동아리 전시 도슨트를 서게 됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="apply-section" class="py-20 bg-gradient-to-b from-white to-slate-50 border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-rose-500 font-semibold text-sm">We Want You!</span>
+                    <h2 class="art-title text-3xl font-bold text-slate-900 mt-2">2026 신입 부원 모집</h2>
+                    <p class="text-slate-500 text-sm mt-2">아틀리에 미술 동아리에서 함께 예술을 탐구할 멋진 부원을 기다립니다. (1인당 1회만 중복 없이 접수 가능)</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- 모집 요강 안내 카드 -->
+                    <div class="bg-indigo-900 text-indigo-100 p-6 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden h-fit">
+                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-indigo-800 rounded-full opacity-30"></div>
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-indigo-800 text-indigo-300 text-xs font-semibold rounded-full mb-4">Recruitment Guide</span>
+                            <h3 class="art-title text-xl font-bold text-white mb-6">아틀리에 부원 모집 요강</h3>
+                            
+                            <ul class="space-y-4 text-xs">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-rose-400 mt-0.5"></i>
+                                    <div>
+                                        <p class="font-bold text-white">모집 대상</p>
+                                        <p class="text-indigo-200">미술에 관심이 있는 1, 2, 3학년 재학생 전체</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-rose-400 mt-0.5"></i>
+                                    <div>
+                                        <p class="font-bold text-white">중복 방지 시스템</p>
+                                        <p class="text-indigo-200">동일 학번으로 중복 제출 시, 보안을 위해 두 번 제출되지 않도록 차단됩니다.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-rose-400 mt-0.5"></i>
+                                    <div>
+                                        <p class="font-bold text-white">동아리 혜택</p>
+                                        <p class="text-indigo-200">개인 포트폴리오북 제작, 축제 전시회 지원, 동아리 생활기록부 상세 기록</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 선생님 전용 버튼 -->
+                        <div class="mt-8 pt-6 border-t border-indigo-800 relative z-10">
+                            <button id="open-admin-btn" class="w-full bg-indigo-800 hover:bg-indigo-700 text-white text-xs font-semibold py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2 border border-indigo-700/50">
+                                <i class="fa-solid fa-lock text-rose-400"></i> 선생님 전용 (지원서 실시간 조회)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 실제 지원 양식 폼 -->
+                    <div class="lg:col-span-2 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/60 shadow-lg">
+                        <h3 class="font-bold text-lg text-slate-800 mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-file-signature text-rose-500"></i> 아틀리에 입단 지원서
+                        </h3>
+
+                        <form id="apply-form" onsubmit="return false;" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1" for="apply-student-id">학번 (중복 확인 대상) <span class="text-rose-500">*</span></label>
+                                    <input type="text" id="apply-student-id" placeholder="예: 10423 (5자리)" class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 bg-slate-50/50 font-semibold" required>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1" for="apply-name">이름 <span class="text-rose-500">*</span></label>
+                                    <input type="text" id="apply-name" placeholder="예: 김아름" class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 bg-slate-50/50" required>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1" for="apply-phone">연락처 <span class="text-rose-500">*</span></label>
+                                <input type="tel" id="apply-phone" placeholder="예: 010-1234-5678" class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 bg-slate-50/50" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1" for="apply-field">희망하는 주전공 미술 분야 <span class="text-rose-500">*</span></label>
+                                <select id="apply-field" class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 bg-slate-50/50" required>
+                                    <option value="">선택하세요</option>
+                                    <option value="수채화/소묘">소묘 & 수채화 (정통 회화)</option>
+                                    <option value="아크릴/유화">아크릴 & 유화 (캔버스)</option>
+                                    <option value="디지털 드로잉">디지털 일러스트 & 굿즈 제작</option>
+                                    <option value="조형/기타">입체 조형 및 자유 예술</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1" for="apply-reason">지원동기 및 포부 <span class="text-rose-500">*</span></label>
+                                <textarea id="apply-reason" rows="4" placeholder="미술부 아틀리에에 지원하는 동기와 고등학교 생활 동안 어떤 그림을 그려보고 싶은지 자유롭게 적어주세요!" class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 bg-slate-50/50" required></textarea>
+                            </div>
+
+                            <!-- 포트폴리오 연동 체크박스 -->
+                            <div class="p-3 bg-rose-50/60 rounded-2xl border border-rose-100 flex items-start gap-3">
+                                <input type="checkbox" id="attach-canvas" class="w-4 h-4 text-rose-500 border-slate-300 rounded focus:ring-rose-500 mt-0.5 accent-rose-500">
+                                <div>
+                                    <label for="attach-canvas" class="text-xs font-bold text-rose-700 cursor-pointer block">디지털 캔버스 포트폴리오 연동하기</label>
+                                    <p class="text-[10px] text-rose-600 mt-0.5">체크하시면 위의 '나만의 디지털 캔버스'에서 그린 최신 그림이 자동으로 내 포트폴리오로 첨부되어 파이어베이스 서버에 등록됩니다.</p>
+                                </div>
+                            </div>
+
+                            <button type="button" id="submit-application-btn" class="w-full bg-gradient-to-r from-rose-500 via-purple-500 to-indigo-600 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> 아틀리에 동아리 지원하기
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 선생님 관리자 비밀번호 입력 모달 -->
+        <div id="admin-auth-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-2xl w-full max-w-sm mx-4 transform transition-transform duration-300 scale-95">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-rose-500"></i> 선생님 전용 본인 인증
+                    </h3>
+                    <button id="close-auth-modal-btn" class="p-1 text-slate-400 hover:text-slate-600">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <p class="text-xs text-slate-500 mb-4">지원서 목록 조회를 위해 비밀번호를 입력해 주세요. (기본 비밀번호: <span class="font-bold text-rose-500">1234</span>)</p>
+                
+                <input type="password" id="admin-password" placeholder="비밀번호 입력" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 bg-slate-50/50 mb-4">
+                
+                <button id="confirm-admin-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl transition-colors text-sm">
+                    관리자 로그인
+                </button>
+            </div>
+        </div>
+
+        <!-- 선생님 전용 지원서 확인 관리 모달 -->
+        <div id="admin-dashboard-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xl w-full max-w-6xl h-[90vh] mx-4 flex flex-col transform transition-transform duration-300 scale-95">
+                <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                    <div>
+                        <h3 class="font-bold text-xl text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-folder-open text-indigo-500"></i> 지원자 서류 실시간 관리자 패널
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-0.5">파이어베이스 실시간 연동 중 | 신입생들이 접수한 서류를 한눈에 관리하고 엑셀로 추출합니다.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button id="export-csv-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2 px-3.5 rounded-lg flex items-center gap-1.5 transition-colors">
+                            <i class="fa-solid fa-file-excel"></i> Excel(CSV) 다운로드
+                        </button>
+                        <button id="close-admin-dashboard-btn" class="p-2 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 실시간 리포트 통계 영역 -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-b border-slate-100 text-slate-800">
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <span class="text-[10px] font-bold text-slate-400 block uppercase">총 지원 인원</span>
+                        <span id="stat-total" class="text-2xl font-black text-slate-800">0</span> <span class="text-xs text-slate-400">명</span>
+                    </div>
+                    <div class="bg-indigo-50 p-3 rounded-2xl border border-indigo-100">
+                        <span class="text-[10px] font-bold text-indigo-400 block uppercase">디지털 전공</span>
+                        <span id="stat-digital" class="text-2xl font-black text-indigo-700">0</span> <span class="text-xs text-indigo-400">명</span>
+                    </div>
+                    <div class="bg-rose-50 p-3 rounded-2xl border border-rose-100">
+                        <span class="text-[10px] font-bold text-rose-400 block uppercase">수채화/소묘</span>
+                        <span id="stat-classic" class="text-2xl font-black text-rose-600">0</span> <span class="text-xs text-rose-400">명</span>
+                    </div>
+                    <div class="bg-amber-50 p-3 rounded-2xl border border-amber-100">
+                        <span class="text-[10px] font-bold text-amber-500 block uppercase">포트폴리오 제출</span>
+                        <span id="stat-portfolio" class="text-2xl font-black text-amber-600">0</span> <span class="text-xs text-amber-400">명</span>
+                    </div>
+                </div>
+
+                <!-- 테이블 영역 -->
+                <div class="flex-grow overflow-auto py-4">
+                    <div class="min-w-full overflow-hidden rounded-2xl border border-slate-100">
+                        <table class="min-w-full divide-y divide-slate-100 text-sm text-left">
+                            <thead class="bg-slate-50 text-xs font-bold text-slate-500 uppercase">
+                                <tr>
+                                    <th class="px-4 py-3">학번</th>
+                                    <th class="px-4 py-3">이름</th>
+                                    <th class="px-4 py-3">연락처</th>
+                                    <th class="px-4 py-3">희망 전공</th>
+                                    <th class="px-4 py-3">지원동기 및 포부</th>
+                                    <th class="px-4 py-3">포트폴리오</th>
+                                    <th class="px-4 py-3 text-center">동작</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-applicants-tbody" class="divide-y divide-slate-100 text-slate-700">
+                                <!-- JS 동적 삽입 -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="no-applicants-view" class="hidden py-20 text-center text-slate-400">
+                        <i class="fa-solid fa-users-slash text-4xl mb-3 text-slate-300"></i>
+                        <p class="text-sm">아직 접수된 아틀리에 신입생 지원서가 없습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 커스텀 삭제 확인 모달 -->
+        <div id="custom-confirm-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-2xl w-full max-w-sm mx-4 text-center">
+                <i class="fa-solid fa-triangle-exclamation text-rose-500 text-4xl mb-4 animate-bounce"></i>
+                <h3 class="font-bold text-lg text-slate-800 mb-2">지원서 영구 삭제</h3>
+                <p class="text-xs text-slate-500 mb-6">선택한 지원서를 파이어베이스 DB에서 영구 삭제하시겠습니까?<br>이 작업은 절대 복구할 수 없습니다.</p>
+                <div class="flex gap-3">
+                    <button id="cancel-delete-btn" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl transition-colors text-sm">취소</button>
+                    <button id="confirm-delete-btn" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 rounded-xl transition-colors text-sm">삭제하기</button>
+                </div>
+            </div>
+        </div>
+
+        <section id="guestbook" class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-indigo-600 font-semibold text-sm">Visitor's Log</span>
+                    <h2 class="art-title text-3xl font-bold text-slate-900 mt-2 mb-4">전시 한 줄 감상평</h2>
+                    <p class="text-slate-500 text-sm">동아리 학생들의 아름다운 도전에 격려와 사랑이 듬뿍 담긴 감상 한 줄을 선물해 주세요!</p>
+                </div>
+
+                <!-- 감상평 입력 폼 -->
+                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200/60 shadow-sm mb-10">
+                    <div class="grid sm:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <input type="text" id="visitor-name" placeholder="작성자 이름 (또는 학년 반)" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 bg-white">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <input type="text" id="visitor-message" placeholder="부원들이 힘을 낼 수 있는 따뜻한 한마디를 적어주세요!" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 bg-white">
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button id="add-comment-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm py-2.5 px-6 rounded-xl shadow transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> 방명록 남기기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 등록된 한줄 감상평 목록 -->
+                <div class="space-y-4 max-h-96 overflow-y-auto pr-2" id="comment-list">
+                    <div class="text-center py-10 text-slate-400 text-sm">방명록 데이터를 불러오고 있습니다...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 푸터 영역 -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-gradient-to-tr from-rose-400 to-indigo-500 rounded-lg flex items-center justify-center text-white">
+                    <i class="fa-solid fa-palette text-sm"></i>
+                </div>
+                <span class="art-title text-lg font-bold text-white tracking-wide">아틀리에 고교 미술부</span>
+            </div>
+            <p class="text-xs text-center md:text-right leading-relaxed text-slate-500">
+                &copy; 2026 Atelier High School Art Club. All rights reserved.<br>
+                지도교사 문의: 학교 본관 4층 미술실 | 학생회장: 이민아 (010-XXXX-XXXX)
+            </p>
+        </div>
+    </footer>
+
+    <!-- 알림용 임시 토스트 창 -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 bg-slate-900/95 text-white text-sm font-semibold px-6 py-3.5 rounded-2xl shadow-xl flex items-center gap-2 max-w-md">
+        <div id="toast-icon-box" class="w-5 h-5 flex items-center justify-center rounded-full bg-emerald-500 text-white text-[10px]">
+            <i id="toast-icon" class="fa-solid fa-check"></i>
+        </div>
+        <span id="toast-text">성공적으로 등록되었습니다!</span>
+    </div>
+
+    <!-- Firebase 모듈 설정 및 메인 로직 구동 -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, addDoc, updateDoc, deleteDoc, onSnapshot, collection, query, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ==================================================================
+        // 🔒 [선생님의 개인 파이어베이스(Firebase) 설정 복사/붙여넣기 영역]
+        // 파이어베이스 콘솔에서 생성하신 웹 앱 설정값을 아래에 입력하세요.
+        // ==================================================================
+        const teacherFirebaseConfig = {
+            apiKey: "선생님의_API_KEY_여기에_붙여넣으세요",
+            authDomain: "선생님의_AUTH_DOMAIN_여기에_붙여넣으세요",
+            projectId: "선생님의_PROJECT_ID_여기에_붙여넣으세요",
+            storageBucket: "선생님의_STORAGE_BUCKET_여기에_붙여넣으세요",
+            messagingSenderId: "선생님의_SENDER_ID_여기에_붙여넣으세요",
+            appId: "선생님의_APP_ID_여기에_붙여넣으세요"
+        };
+        // ==================================================================
+
+        // 입력 여부 자동 판별식
+        const isConfigured = teacherFirebaseConfig.apiKey && !teacherFirebaseConfig.apiKey.includes("선생님의_");
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'atelier-art-club-production';
+        
+        // 설정이 완료된 상태면 선생님의 config를 적용하고, 미설정 상태라면 안전한 가동을 위해 기본 데모 config를 fallback으로 활용합니다.
+        const firebaseConfig = isConfigured 
+            ? teacherFirebaseConfig 
+            : (typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+                apiKey: "AIzaSyAWR_Hf6qmCMDXRl8fOyR6tgNY0vlgAe7Y",
+                authDomain: "atelier-art-club.firebaseapp.com",
+                projectId: "atelier-art-club",
+                storageBucket: "atelier-art-club.firebasestorage.app",
+                messagingSenderId: "378866228386",
+                appId: "1:378866228386:web:a9e8e60a504bee65d54bfb"
+              });
+
+        // 앱 및 인프라 이니셜라이징
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // 로컬 상태 메모리 정의
+        let artworks = [];
+        let comments = [];
+        let applicants = [];
+        let currentUserId = null;
+        let authReady = false;
+
+        // 익명 인증 및 권한 검증 사전 처리
+        async function authenticateUser() {
+            try {
+                // Rule 3: Auth Before Queries - 무조건 인증 과정이 끝난 후 통신을 시도
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
+                    currentUserId = userCredential.user.uid;
+                } else {
+                    const userCredential = await signInAnonymously(auth);
+                    currentUserId = userCredential.user.uid;
+                }
+                
+                // 인증 가동 승인 플래그 활성화
+                if (!auth.currentUser) return;
+                authReady = true;
+                
+                // 데이터 실시간 스트림 파이프라인 연동 개시
+                setupRealtimeSync();
+            } catch (error) {
+                console.error("Firebase Authentication 연동 중 문제가 감지되었습니다:", error);
+                showToast("데이터베이스 연결 대기 중. 로컬 시뮬레이터로 기동합니다.", "warning");
+                loadFallbackMockData();
+            }
+        }
+
+        // 실시간 동기화 설정 (RULE 1 & RULE 2 준수: 단일 콜렉션 단순 쿼리 후 가공)
+        function setupRealtimeSync() {
+            if (!authReady || !auth.currentUser) return;
+
+            // 1. 지원자 정보 실시간 수집 (경로: /artifacts/{appId}/public/data/applicants)
+            const applicantsRef = collection(db, 'artifacts', appId, 'public', 'data', 'applicants');
+            onSnapshot(applicantsRef, (snapshot) => {
+                applicants = [];
+                snapshot.forEach(doc => {
+                    applicants.push({ id: doc.id, ...doc.data() });
+                });
+                renderApplicants();
+            }, (error) => {
+                console.error("지원서 실시간 연동 에러:", error);
+            });
+
+            // 2. 갤러리 전시 작품 실시간 수집 (경로: /artifacts/{appId}/public/data/artworks)
+            const artworksRef = collection(db, 'artifacts', appId, 'public', 'data', 'artworks');
+            onSnapshot(artworksRef, (snapshot) => {
+                artworks = [];
+                snapshot.forEach(doc => {
+                    artworks.push({ id: doc.id, ...doc.data() });
+                });
+                // Rule 2 만족용: 클라이언트 메모리 정렬 (역순)
+                artworks.sort((a, b) => b.createdAt - a.createdAt);
+                renderGallery('all');
+            }, (error) => {
+                console.error("전시관 실시간 연동 에러:", error);
+            });
+
+            // 3. 한 줄 감상평 실시간 수집 (경로: /artifacts/{appId}/public/data/comments)
+            const commentsRef = collection(db, 'artifacts', appId, 'public', 'data', 'comments');
+            onSnapshot(commentsRef, (snapshot) => {
+                comments = [];
+                snapshot.forEach(doc => {
+                    comments.push({ id: doc.id, ...doc.data() });
+                });
+                // 시간순 역방향 정렬
+                comments.sort((a, b) => b.createdAt - a.createdAt);
+                renderComments();
+            }, (error) => {
+                console.error("방명록 실시간 연동 에러:", error);
+            });
+        }
+
+        // 오프라인 상태 백업 더미 데이터 적재
+        function loadFallbackMockData() {
+            artworks = [
+                { id: 'mock-1', title: '봄의 속삭임', author: '2학년 이소윤', category: 'canvas', image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=800', likes: 12, date: '2026-04-12', createdAt: Date.now() },
+                { id: 'mock-2', title: '미래에서 온 고양이', author: '1학년 박준영', category: 'digital', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800', likes: 18, date: '2026-05-02', createdAt: Date.now() - 50000 }
+            ];
+            comments = [
+                { id: 'mock-c-1', name: '교장선생님', message: '아이들의 실력이 대단합니다. 훌륭한 지도에 감사드립니다.', date: '2026-05-24', createdAt: Date.now() }
+            ];
+            renderGallery('all');
+            renderComments();
+        }
+
+        // ================= 모바일 사이드바 & 캔버스 드로잉 엔진 구동 =================
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        const canvas = document.getElementById('paint-canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let brushColor = '#0f172a';
+        let brushSize = 5;
+        let isEraser = false;
+
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', resizeCanvas);
+
+        function startDrawing(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            if (e.touches && e.touches.length > 0) {
+                return {
+                    x: e.touches[0].clientX - rect.left,
+                    y: e.touches[0].clientY - rect.top
+                };
+            }
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+
+            const pos = getMousePos(e);
+            ctx.lineWidth = brushSize;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.strokeStyle = isEraser ? '#ffffff' : brushColor;
+
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        canvas.addEventListener('mousemove', draw);
+
+        canvas.addEventListener('touchstart', startDrawing, { passive: false });
+        canvas.addEventListener('touchend', stopDrawing, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+
+        // 캔버스 도구 바 연결
+        const colorPalette = document.getElementById('color-palette');
+        const customColor = document.getElementById('custom-color');
+        const brushSizeInput = document.getElementById('brush-size');
+        const brushSizeVal = document.getElementById('brush-size-val');
+        const clearBtn = document.getElementById('clear-btn');
+        const eraserBtn = document.getElementById('eraser-btn');
+
+        colorPalette.addEventListener('click', (e) => {
+            const colorBtn = e.target.closest('button');
+            if (!colorBtn) return;
+
+            colorPalette.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-slate-900', 'scale-110');
+            });
+
+            isEraser = false;
+            eraserBtn.classList.remove('bg-rose-100', 'text-rose-600');
+            
+            brushColor = colorBtn.getAttribute('data-color');
+            colorBtn.classList.add('ring-2', 'ring-slate-900', 'scale-110');
+        });
+
+        customColor.addEventListener('input', (e) => {
+            isEraser = false;
+            eraserBtn.classList.remove('bg-rose-100', 'text-rose-600');
+            brushColor = e.target.value;
+            colorPalette.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-slate-900', 'scale-110');
+            });
+        });
+
+        eraserBtn.addEventListener('click', () => {
+            isEraser = !isEraser;
+            if (isEraser) {
+                eraserBtn.classList.add('bg-rose-100', 'text-rose-600');
+            } else {
+                eraserBtn.classList.remove('bg-rose-100', 'text-rose-600');
+            }
+        });
+
+        brushSizeInput.addEventListener('input', (e) => {
+            brushSize = e.target.value;
+            brushSizeVal.innerText = `${brushSize}px`;
+        });
+
+        clearBtn.addEventListener('click', () => {
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            showToast('캔버스가 깔끔하게 초기화되었습니다.');
+        });
+
+        // 세련된 커스텀 토스트 알림 (UI Alert 대체)
+        function showToast(text, type = "success") {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            const iconBox = document.getElementById('toast-icon-box');
+            const icon = document.getElementById('toast-icon');
+
+            toastText.innerText = text;
+            if (type === "success") {
+                iconBox.className = "w-5 h-5 flex items-center justify-center rounded-full bg-emerald-500 text-white text-[10px]";
+                icon.className = "fa-solid fa-check";
+            } else if (type === "error" || type === "warning") {
+                iconBox.className = "w-5 h-5 flex items-center justify-center rounded-full bg-rose-500 text-white text-[10px]";
+                icon.className = "fa-solid fa-triangle-exclamation";
+            }
+
+            toast.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
+            }, 3500);
+        }
+
+        // ================= STREAMING_CHUNK: Drawing and rendering artworks... =================
+        function renderGallery(filter = 'all') {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = '';
+
+            const filteredArtworks = artworks.filter(art => {
+                if (filter === 'all') return true;
+                return art.category === filter;
+            });
+
+            if (filteredArtworks.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-slate-400">
+                        <i class="fa-solid fa-paintbrush text-4xl mb-3"></i>
+                        <p class="text-sm">해당 카테고리에 등록된 학생들의 작품이 아직 없습니다.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredArtworks.forEach(art => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group";
+                card.innerHTML = `
+                    <div class="aspect-[4/3] bg-slate-100 relative overflow-hidden">
+                        <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 left-4 text-xs font-bold text-slate-900 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
+                            ${getCategoryLabel(art.category)}
+                        </span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-lg text-slate-900 art-title">${art.title}</h3>
+                            <button id="like-btn-${art.id}" class="flex items-center gap-1.5 text-rose-500 hover:text-rose-600 bg-rose-50 px-3 py-1.5 rounded-xl transition-colors text-xs font-semibold">
+                                <i class="fa-solid fa-heart"></i> <span>${art.likes || 0}</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-50 pt-3">
+                            <span><i class="fa-solid fa-user-edit mr-1"></i> ${art.author}</span>
+                            <span><i class="fa-solid fa-calendar-alt mr-1"></i> ${art.date}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // 좋아요 바인딩
+                card.querySelector(`#like-btn-${art.id}`).addEventListener('click', () => {
+                    likeArtwork(art.id);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function getCategoryLabel(cat) {
+            switch(cat) {
+                case 'digital': return '💻 디지털 드로잉';
+                case 'canvas': return '🎨 회화/수채화';
+                case 'illustration': return '✒️ 디자인/일러스트';
+                default: return '🌈 기타 창작';
+            }
+        }
+
+        // 갤러리 필터링 조작 이벤트
+        document.getElementById('gallery-filters').addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+
+            document.querySelectorAll('#gallery-filters button').forEach(b => {
+                b.classList.remove('bg-slate-900', 'text-white', 'shadow-sm');
+                b.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            btn.classList.remove('bg-slate-100', 'text-slate-600');
+            btn.classList.add('bg-slate-900', 'text-white', 'shadow-sm');
+
+            renderGallery(btn.getAttribute('data-filter'));
+        });
+
+        // 캔버스 드로잉작 서버 등록 기능
+        const submitArtBtn = document.getElementById('submit-art-btn');
+        submitArtBtn.addEventListener('click', async () => {
+            if (!authReady || !auth.currentUser) {
+                showToast("서버 연결 대기 중입니다. 잠시 후 다시 시도해주세요.", "warning");
+                return;
+            }
+
+            const authorInput = document.getElementById('art-author');
+            const titleInput = document.getElementById('art-title');
+
+            if (!authorInput.value.trim()) {
+                showToast('작가 이름을 기입해 주세요!', 'error');
+                authorInput.focus();
+                return;
+            }
+            if (!titleInput.value.trim()) {
+                showToast('작품의 제목을 지어주세요!', 'error');
+                titleInput.focus();
+                return;
+            }
+
+            // 용량 압축을 위해 퀄리티를 조절하여 JPEG로 캡처 (Firestore 1MB 한도 준수)
+            const drawingDataUrl = canvas.toDataURL('image/jpeg', 0.5);
+
+            try {
+                // 파이어베이스 신규 문서 생성
+                const artworksRef = collection(db, 'artifacts', appId, 'public', 'data', 'artworks');
+                await addDoc(artworksRef, {
+                    title: titleInput.value.trim(),
+                    author: authorInput.value.trim(),
+                    category: 'digital',
+                    image: drawingDataUrl,
+                    likes: 0,
+                    date: new Date().toISOString().split('T')[0],
+                    createdAt: Date.now()
+                });
+
+                // 입력 필드 초기화
+                authorInput.value = '';
+                titleInput.value = '';
+                
+                // 캔버스 초기화
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                showToast('작품이 온라인 미술관에 성공적으로 전시되었습니다! 🎉');
+                document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+            } catch (err) {
+                console.error("작품 등록 오류:", err);
+                showToast("작품 업로드 중 문제가 발생했습니다.", "error");
+            }
+        });
+
+        // 작품 좋아요(하트) 실시간 카운트 증량
+        async function likeArtwork(id) {
+            if (!authReady || !auth.currentUser) return;
+            const target = artworks.find(a => a.id === id);
+            if (!target) return;
+
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'artworks', id);
+                await updateDoc(docRef, {
+                    likes: (target.likes || 0) + 1
+                });
+                showToast(`"${target.title}" 작품에 하트를 보냈습니다!`);
+            } catch (err) {
+                console.error("좋아요 처리 실패:", err);
+            }
+        }
+
+        // ================= STREAMING_CHUNK: Double submission validation processing... =================
+        // 파이어베이스 중복 방지 기반 신입 부원 모집 지원서 접수 처리
+        const submitAppBtn = document.getElementById('submit-application-btn');
+        
+        submitAppBtn.addEventListener('click', async () => {
+            if (!authReady || !auth.currentUser) {
+                showToast("서버 연결을 확인하는 중입니다.", "warning");
+                return;
+            }
+
+            const studentIdInput = document.getElementById('apply-student-id');
+            const nameInput = document.getElementById('apply-name');
+            const phoneInput = document.getElementById('apply-phone');
+            const fieldSelect = document.getElementById('apply-field');
+            const reasonText = document.getElementById('apply-reason');
+            const attachCanvasCheckbox = document.getElementById('attach-canvas');
+
+            // 필수 폼 유효성 가이드라인 확인
+            const enteredStudentId = studentIdInput.value.trim();
+            if (!enteredStudentId) {
+                showToast('학번을 입력해 주세요!', 'error');
+                studentIdInput.focus();
+                return;
+            }
+            if (!nameInput.value.trim()) {
+                showToast('이름을 입력해 주세요!', 'error');
+                nameInput.focus();
+                return;
+            }
+            if (!phoneInput.value.trim()) {
+                showToast('연락처를 정확히 기입해 주세요!', 'error');
+                phoneInput.focus();
+                return;
+            }
+            if (!fieldSelect.value) {
+                showToast('희망하는 미술 분야를 선택해 주세요!', 'error');
+                fieldSelect.focus();
+                return;
+            }
+            if (!reasonText.value.trim()) {
+                showToast('지원동기를 작성해 주세요!', 'error');
+                reasonText.focus();
+                return;
+            }
+
+            // [핵심 요건: 학번 중복 제출 방지 처리]
+            // 메모리에 로드된 지원 정보를 사전에 조회하여 중복 유무를 판독
+            const isDuplicate = applicants.some(app => app.studentId === enteredStudentId);
+            if (isDuplicate) {
+                showToast(`이미 접수 완료된 학번(${enteredStudentId})입니다. 수정은 미술실 선생님께 문의해 주세요!`, 'error');
+                studentIdInput.select();
+                return;
+            }
+
+            // 드로잉 데이터 연동 선택 시 이미지 추출
+            let portfolioData = null;
+            if (attachCanvasCheckbox.checked) {
+                portfolioData = canvas.toDataURL('image/jpeg', 0.5);
+            }
+
+            try {
+                const applicantsRef = collection(db, 'artifacts', appId, 'public', 'data', 'applicants');
+                await addDoc(applicantsRef, {
+                    studentId: enteredStudentId,
+                    name: nameInput.value.trim(),
+                    phone: phoneInput.value.trim(),
+                    field: fieldSelect.value,
+                    reason: reasonText.value.trim(),
+                    portfolio: portfolioData,
+                    date: new Date().toISOString().split('T')[0],
+                    createdAt: Date.now()
+                });
+
+                // 입력 필드 일괄 세척
+                studentIdInput.value = '';
+                nameInput.value = '';
+                phoneInput.value = '';
+                fieldSelect.value = '';
+                reasonText.value = '';
+                attachCanvasCheckbox.checked = false;
+
+                showToast('축하합니다! 입단 지원서 접수가 완료되었습니다. 🎉');
+            } catch (err) {
+                console.error("지원서 제출 오류:", err);
+                showToast("지원서 제출 과정에 문제가 발생하였습니다.", "error");
+            }
+        });
+
+        // ================= STREAMING_CHUNK: Managing teacher administration panel... =================
+        // 교사 권한 확인 및 관리자 대시보드 조작
+        const openAdminBtn = document.getElementById('open-admin-btn');
+        const adminAuthModal = document.getElementById('admin-auth-modal');
+        const adminDashboardModal = document.getElementById('admin-dashboard-modal');
+        const confirmAdminBtn = document.getElementById('confirm-admin-btn');
+        const closeAuthModalBtn = document.getElementById('close-auth-modal-btn');
+        const closeAdminDashboardBtn = document.getElementById('close-admin-dashboard-btn');
+        const adminApplicantsTbody = document.getElementById('admin-applicants-tbody');
+        const noApplicantsView = document.getElementById('no-applicants-view');
+        const exportCsvBtn = document.getElementById('export-csv-btn');
+
+        // 커스텀 컨펌 모달 엘리먼트
+        const customConfirmModal = document.getElementById('custom-confirm-modal');
+        const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+        const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+        let deleteTargetId = null;
+
+        openAdminBtn.addEventListener('click', () => {
+            adminAuthModal.classList.remove('hidden');
+            document.getElementById('admin-password').focus();
+        });
+
+        closeAuthModalBtn.addEventListener('click', () => {
+            adminAuthModal.classList.add('hidden');
+        });
+
+        confirmAdminBtn.addEventListener('click', () => {
+            const passwordInput = document.getElementById('admin-password');
+            if (passwordInput.value === '1234') {
+                passwordInput.value = '';
+                adminAuthModal.classList.add('hidden');
+                adminDashboardModal.classList.remove('hidden');
+                renderApplicants();
+            } else {
+                showToast('비밀번호가 맞지 않습니다.', 'error');
+                passwordInput.select();
+            }
+        });
+
+        closeAdminDashboardBtn.addEventListener('click', () => {
+            adminDashboardModal.classList.add('hidden');
+        });
+
+        // 교사용 실시간 접수 현황 렌더링
+        function renderApplicants() {
+            adminApplicantsTbody.innerHTML = '';
+            
+            if (applicants.length === 0) {
+                noApplicantsView.classList.remove('hidden');
+                updateStats();
+                return;
+            }
+            noApplicantsView.classList.add('hidden');
+
+            // 접수순 역순 배열 출력
+            const sortedApplicants = [...applicants].sort((a, b) => b.createdAt - a.createdAt);
+
+            sortedApplicants.forEach((app) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition-colors duration-150';
+
+                let portfolioImgHTML = `<span class="text-xs text-slate-400">없음</span>`;
+                if (app.portfolio) {
+                    portfolioImgHTML = `
+                        <img src="${app.portfolio}" alt="포트폴리오" class="w-12 h-12 object-cover rounded-lg border border-slate-200 cursor-zoom-in hover:scale-110 transition-transform shadow-sm" id="p-img-${app.id}" title="크게보기">
+                    `;
+                }
+
+                tr.innerHTML = `
+                    <td class="px-4 py-3 font-semibold text-slate-800">${app.studentId}</td>
+                    <td class="px-4 py-3 font-bold text-slate-900">${app.name}</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-500">${app.phone}</td>
+                    <td class="px-4 py-3">
+                        <span class="inline-block px-2 py-1 text-xs font-semibold rounded bg-indigo-50 text-indigo-600">${app.field}</span>
+                    </td>
+                    <td class="px-4 py-3 max-w-[240px] truncate text-xs text-slate-600" title="${app.reason}">${app.reason}</td>
+                    <td class="px-4 py-3">${portfolioImgHTML}</td>
+                    <td class="px-4 py-3 text-center">
+                        <button id="del-app-${app.id}" class="text-xs text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 py-1.5 px-2.5 rounded-lg transition-colors font-semibold">
+                            <i class="fa-solid fa-trash-can"></i> 삭제
+                        </button>
+                    </td>
+                `;
+
+                // 이미지 확대 핸들러 바인딩
+                if (app.portfolio) {
+                    tr.querySelector(`#p-img-${app.id}`).addEventListener('click', () => {
+                        const win = window.open();
+                        win.document.write(`<img src="${app.portfolio}" style="max-width:100%; height:auto; display:block; margin:20px auto; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.15)">`);
+                    });
+                }
+
+                // 삭제 트리거 바인딩
+                tr.querySelector(`#del-app-${app.id}`).addEventListener('click', () => {
+                    deleteTargetId = app.id;
+                    customConfirmModal.classList.remove('hidden');
+                });
+
+                adminApplicantsTbody.appendChild(tr);
+            });
+
+            updateStats();
+        }
+
+        // 통계 분석 업데이트
+        function updateStats() {
+            const total = applicants.length;
+            const digital = applicants.filter(a => a.field === '디지털 드로잉').length;
+            const classic = applicants.filter(a => a.field === '수채화/소묘').length;
+            const hasPortfolio = applicants.filter(a => a.portfolio !== null).length;
+
+            document.getElementById('stat-total').innerText = total;
+            document.getElementById('stat-digital').innerText = digital;
+            document.getElementById('stat-classic').innerText = classic;
+            document.getElementById('stat-portfolio').innerText = hasPortfolio;
+        }
+
+        // 커스텀 모달 삭제 결정 처리
+        cancelDeleteBtn.addEventListener('click', () => {
+            customConfirmModal.classList.add('hidden');
+            deleteTargetId = null;
+        });
+
+        confirmDeleteBtn.addEventListener('click', async () => {
+            if (deleteTargetId && authReady && auth.currentUser) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'applicants', deleteTargetId);
+                    await deleteDoc(docRef);
+                    showToast('해당 지원서가 파이어베이스에서 영구 삭제되었습니다.');
+                } catch (err) {
+                    console.error("문서 삭제 오류:", err);
+                    showToast("삭제 실패. 권한을 확인해 주세요.", "error");
+                }
+            }
+            customConfirmModal.classList.add('hidden');
+            deleteTargetId = null;
+        });
+
+        // 지원 명단 엑셀(CSV) 완벽 변환 다운로드
+        exportCsvBtn.addEventListener('click', () => {
+            if (applicants.length === 0) {
+                showToast('다운로드할 지원 정보 데이터가 없습니다.', 'error');
+                return;
+            }
+
+            // UTF-8 BOM 인코딩 식별 헤더 (엑셀에서 한글 깨짐을 전면 차단)
+            let csvContent = "\uFEFF";
+            csvContent += "학번,이름,연락처,희망분야,지원동기,포트폴리오유무,접수날짜\r\n";
+
+            applicants.forEach((app) => {
+                const safeReason = `"${app.reason.replace(/"/g, '""')}"`;
+                const hasPort = app.portfolio ? "O(유)" : "X(무)";
+                const row = [
+                    app.studentId,
+                    app.name,
+                    app.phone,
+                    app.field,
+                    safeReason,
+                    hasPort,
+                    app.date
+                ].join(",");
+                csvContent += row + "\r\n";
+            });
+
+            // 임시 다운로드 객체 생성
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", `아틀리에_미술동아리_지원자명단_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showToast('지원자 명단이 엑셀 CSV 포맷으로 성공적으로 내보내졌습니다.');
+        });
+
+        // ================= STREAMING_CHUNK: Managing comment board interactions... =================
+        // 방명록 실시간 피드백 처리
+        const commentList = document.getElementById('comment-list');
+        const visitorName = document.getElementById('visitor-name');
+        const visitorMsg = document.getElementById('visitor-message');
+        const addCommentBtn = document.getElementById('add-comment-btn');
+
+        function renderComments() {
+            commentList.innerHTML = '';
+            if (comments.length === 0) {
+                commentList.innerHTML = '<p class="text-center text-slate-400 text-sm py-10">가장 먼저 미술부 학생들에게 힘이 되는 한 줄 감상평을 선물해보세요!</p>';
+                return;
+            }
+
+            comments.forEach(com => {
+                const item = document.createElement('div');
+                item.className = "bg-slate-50 border border-slate-100 p-4 rounded-2xl shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+                item.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs shrink-0">
+                            ${(com.name && com.name[0]) ? com.name[0] : '익'}
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-sm text-slate-800">${com.name || '익명'}</span>
+                                <span class="text-[10px] text-slate-400 bg-white border border-slate-100 px-1.5 py-0.5 rounded">${com.date}</span>
+                            </div>
+                            <p class="text-sm text-slate-600 mt-1">${com.message}</p>
+                        </div>
+                    </div>
+                `;
+                commentList.appendChild(item);
+            });
+        }
+
+        addCommentBtn.addEventListener('click', async () => {
+            if (!authReady || !auth.currentUser) return;
+
+            const nameVal = visitorName.value.trim();
+            const msgVal = visitorMsg.value.trim();
+
+            if (!nameVal) {
+                showToast('이름 또는 닉네임을 적어주세요!', 'error');
+                visitorName.focus();
+                return;
+            }
+            if (!msgVal) {
+                showToast('감상평을 기입해주세요!', 'error');
+                visitorMsg.focus();
+                return;
+            }
+
+            try {
+                const commentsRef = collection(db, 'artifacts', appId, 'public', 'data', 'comments');
+                await addDoc(commentsRef, {
+                    name: nameVal,
+                    message: msgVal,
+                    date: new Date().toISOString().split('T')[0],
+                    createdAt: Date.now()
+                });
+
+                visitorName.value = '';
+                visitorMsg.value = '';
+                showToast('방명록이 따뜻하게 남겨졌습니다. 감사드립니다!');
+            } catch (err) {
+                console.error("방명록 등록 오류:", err);
+            }
+        });
+
+        // 서비스 기동 시 자격검증(Auth) 실행
+        authenticateUser();
+
+    </script>
+</body>
+</html>
